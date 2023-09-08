@@ -34,10 +34,64 @@ const outputData = {
 
 /////// DEFAULT ROUTE
 app.get('/', (req, res) => {
-    res.send(outputData)
+    // Generate an HTML response
+    const htmlResponse = `
+        <html>
+        <head><title>Data</title></head>
+        <body>
+            <h2>TASK ONE:</h2>
+            <h3>NAME: EFFIONG GODSWILL O.</h3>
+            <p>Slack Name: ${outputData.slack_name}</p>
+            <p>Current Day: ${outputData.current_day}</p>
+            <p>UTC Time: ${outputData.utc_time}</p>
+            <p>Track: ${outputData.track}</p>
+            <p>Github File URL: <a href="${outputData.github_file_url}" target="_blank">${outputData.github_file_url}</a></p>
+            <p>Github Repo URL: <a href="${outputData.github_repo_url}" target="_blank">${outputData.github_repo_url}</a></p>
+            <p>Status Code: ${outputData.status_code}</p>
+
+            <h2> END POINTS</h2>
+            <P> <b>GET RESPONSE DATA WITHOUT QUERY PARAMETERS:</b>  <a href="https://hng-task-one-two.vercel.app/api/data" target="_blank">https://hng-task-one-two.vercel.app/api/data</a></p> </P>
+            <P> <b>RESPONSE WITH QUERIED PARAMETERS:</b>  <a href="https://hng-task-one-two.vercel.app/api/query?&slack_name=GODSWILL_EFFIONG&track=backend" target="_blank">https://hng-task-one-two.vercel.app/api/query?&slack_name=GODSWILL_EFFIONG&track=backend</a></p> </P>
+        </body>
+        </html>
+    `;
+
+    res.send(htmlResponse);
 });
 
-/////// ROUTE TO GET QUERIED DATA
+          // query parameters
+app.get('/api/query', (req, res) => {
+    const slack_name = req.query.slack_name;
+    const track = req.query.track;
+
+
+             // If both parameters are missing, return a 400 Bad Request
+    if (!slack_name && !track) {
+        return res.status(400).json({ error: 'Both slack_name and track are not correct' });
+    }
+             // Validate the slack_name parameter if present
+    if (slack_name && slack_name !== 'GODSWILL_EFFIONG') {
+        return res.status(400).json({ error: 'Incorrect slack name' });
+    }
+        // Validate the track parameter if present
+    if (track && track !== 'backend') {
+        return res.status(400).json({ error: 'Invalid track' });
+    }
+
+    // Generate an HTML response or JSON response based on the presence of parameters
+    if (slack_name || track) {
+        res.json({
+            status: 200,
+            message: 'Successfully fetched data',
+            data: outputData
+        });
+    } else {
+        res.send('No data matching the criteria found');
+    }
+});
+
+
+/////// ROUTE TO GET QUERIED DATA only TWO PARAMS TOGETHER
 app.get('/api/dataQuery', (req, res) => {
     const slack_name = req.query.slack_name;
     const track = req.query.track;
