@@ -1,9 +1,14 @@
+////// first of all import express
 const express = require('express');
-const dotenv = require('dotenv');
-const app = express();
-app.use(express.json());
-dotenv.config();
 
+//// dot env (because i am also usin mongo to connect. i am saving my cridentials in .env file)
+const dotenv = require('dotenv');
+
+//// assigning vriable to app
+const app = express();
+
+// app.use(express.json());
+dotenv.config();
 const PORT = 5000;
 
 
@@ -31,8 +36,8 @@ const outPutdata = {
  "current_day": currentDay,
   "utc_time": getCurrentUtcTime(),
  "track": "backend",
- "github_file_url": "https://github.com/username/repo/blob/main/file_name.ext",
- "github_repo_url": "https://github.com/username/repo",
+ "github_file_url": "https://github.com/DONNWILZY/hngTaskOne/blob/master/index.js",
+ "github_repo_url": "https://github.com/DONNWILZY/hngTaskOne",
  "status_code": 200
 
  
