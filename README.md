@@ -1,6 +1,8 @@
 Project Title:  HNG Task One - API
+
 Project Description:
 The HNG Task One API is a simple HNG10 task on web service built to provide information in response to HTTP GET requests. The goal of this project is to create an API endpoint that can accept query parameters and return specific information in JSON format. E.g   https://hng-task-one-two.vercel.app/api/query?&slack_name=GODSWILL_EFFIONG&track=backend
+
 
 Features:
 1. Default Route: The default route ("/") provides a detailed project description and documentation of available endpoints in HTML format.
