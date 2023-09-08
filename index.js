@@ -7,12 +7,18 @@ dotenv.config();
 const PORT = 5000;
 
 
-
-  // Get the current day of the week
 function getCurrentUtcTime() {
     const now = new Date();
-    return now.toISOString();
-}
+    const utcOffsetInMinutes = now.getTimezoneOffset() - (60 * 1); // 1 hour behind WAT
+    const utcTime = now;
+  
+    // Validate the UTC offset
+    if (utcOffsetInMinutes < -120 || utcOffsetInMinutes > 120) {
+      throw new Error('The UTC offset must be within +/- 2 hours');
+    }
+  
+    return utcTime;
+  }
 
 
   // Get the current day of the week
@@ -21,7 +27,7 @@ function getCurrentUtcTime() {
 
 
 const outPutdata = {
- "slack_name": "example_name",
+ "slack_name": "GODSWILL EFFIONG",
  "current_day": currentDay,
   "utc_time": getCurrentUtcTime(),
  "track": "backend",
@@ -36,25 +42,24 @@ console.log(outPutdata)
 
 
 app.get('/api/data', (req, res) => {
+     const slack_name = req.query.slack_name;
+    const track = req.query.track;
+
+    // Validate the track parameter
+    if (track !== 'backend') {
+        return res.status(400).json({ error: 'Invalid track' });
+    }
 
     
     res.json({
         status: 200,
-        message: 'sucessfully fetch data',
+        message: 'sucessfully fetched data',
         data: outPutdata
 
     })
   });
 
-//   // Connect to MongoDB (replace 'mongodb://localhost/mydatabase' with your MongoDB URL)
-// mongoose.connect('mongodb://localhost/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true });
 
-// const db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-// db.once('open', () => {
-//     console.log('Connected to MongoDB');
-// });
-  
 
 
 
