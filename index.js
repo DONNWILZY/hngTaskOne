@@ -32,10 +32,9 @@ const outputData = {
     "status_code": 200
 };
 
-/////// DEFAULT ROUTE
+/////// DEFAULT ROUTE FOR DESSCIPTION
 app.get('/', (req, res) => {
-    // Generate an HTML response
-    const htmlResponse = `
+       const htmlResponse = `
         <html>
         <head><title>Data</title></head>
         <body>
@@ -96,7 +95,7 @@ app.get('/api/dataQuery', (req, res) => {
     const slack_name = req.query.slack_name;
     const track = req.query.track;
 
-    // Validate the track parameter
+                // Validate the track parameter
     if (track !== 'backend') {
         return res.status(400).json({ error: 'Invalid track' });
     }
@@ -105,7 +104,7 @@ app.get('/api/dataQuery', (req, res) => {
     if (slack_name !== 'GODSWILL_EFFIONG') {
         return res.status(400).json({ error: 'Incorrect slack name' });
     }
-    // Response data
+            // Response data
     res.json({
         status: 200,
         message: 'Successfully fetched data',
