@@ -1,0 +1,33 @@
+{
+  "name": "hngtask1",
+  "version": "1.0.0",
+  "description": "HGN 10 BACKEND TASK",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "build": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DONNWILZY/hngTaskOne.git"
+  },
+  "keywords": [
+    "HNG",
+    "TASK",
+    "STAGE",
+    "ONE"
+  ],
+  "author": "EFFIONG GODSWILL",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DONNWILZY/hngTaskOne/issues"
+  },
+  "homepage": "https://github.com/DONNWILZY/hngTaskOne#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0",
+    "nodemon": "^3.0.1"
+  }
+}
