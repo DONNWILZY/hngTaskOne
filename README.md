@@ -14,8 +14,11 @@ Features:
 4. Endpoint to Get All Data: The "/api/data" endpoint returns JSON responses without any query parameters, providing a complete set of information.
 
 Technologies Used:
+
  Node.js: A JavaScript runtime environment used for server-side development.
+
 Express.js: A web application framework for building APIs and web applications.
+
 MongoDB (not shown in this example): A NoSQL database for data storage. (WILL FURTHER IMPLMENT DATA TO BE STORES AND QUERIED FROM DB)
 
 ---

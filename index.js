@@ -51,6 +51,8 @@ app.get('/', (req, res) => {
             <h2> END POINTS</h2>
             <P> <b>GET RESPONSE DATA WITHOUT QUERY PARAMETERS:</b>  <a href="https://hng-task-one-two.vercel.app/api/data" target="_blank">https://hng-task-one-two.vercel.app/api/data</a></p> </P>
             <P> <b>RESPONSE WITH QUERIED PARAMETERS:</b>  <a href="https://hng-task-one-two.vercel.app/api/query?&slack_name=GODSWILL_EFFIONG&track=backend" target="_blank">https://hng-task-one-two.vercel.app/api/query?&slack_name=GODSWILL_EFFIONG&track=backend</a></p> </P>
+            <P> <b>READ ME - PROJECT DESCRIPTION:</b>  <a href="https://github.com/DONNWILZY/hngTaskOne/blob/master/README.md">https://github.com/DONNWILZY/hngTaskOne/blob/master/README.md</a></p> </P>
+
         </body>
         </html>
     `;
@@ -81,7 +83,7 @@ app.get('/api/query', (req, res) => {
     if (slack_name || track) {
         res.json({
             status: 200,
-            message: 'Successfully fetched data',
+           // message: 'Successfully fetched data',
             data: outputData
         });
     } else {
@@ -107,7 +109,7 @@ app.get('/api/dataQuery', (req, res) => {
             // Response data
     res.json({
         status: 200,
-        message: 'Successfully fetched data',
+        //message: 'Successfully fetched data',
         data: outputData
     });
 });
@@ -117,7 +119,7 @@ app.get('/api/data', (req, res) => {
         // Response data
     res.json({
         status: 200,
-        message: 'Successfully fetched data',
+       // message: 'Successfully fetched data',
         data: outputData
     });
 });
