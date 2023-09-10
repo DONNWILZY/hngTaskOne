@@ -31,16 +31,19 @@ db.once('close', () => {
 
 
 
-function getCurrentUtcTime() {
+function utcTime() {
     const now = new Date();
   
-    // Use toISOString to format the UTC time with the "Z" suffix
-    const utcTime = now.toISOString(undefined, {
+    // Get the current time in seconds since the Unix epoch
+    const utcSeconds = now.getTime() / 1000;
+  
+    // Convert the UTC seconds to a string in the ISO 8601 format
+    const utcTimeString = new Date(utcSeconds).toISOString(undefined, {
       format: 'seconds',
       timeZone: 'Z',
     });
   
-    return utcTime;
+    return utcTimeString;
   }
 
 // Get the current day of the week
@@ -50,7 +53,7 @@ const currentDay = daysOfWeek[new Date().getDay()];
 const outputData = {
     "slack_name": "wilz",
     "current_day": currentDay,
-    "utc_time": getCurrentUtcTime(),
+    "utc_time": utcTime(),
     "track": "backend",
     "github_file_url": "https://github.com/DONNWILZY/hngTaskOne/blob/master/index.js",
     "github_repo_url": "https://github.com/DONNWILZY/hngTaskOne",
