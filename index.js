@@ -31,20 +31,26 @@ db.once('close', () => {
 
 
 
-function utcTime() {
+function getCurrentUtcTime() {
     const now = new Date();
   
     // Get the current time in seconds since the Unix epoch
     const utcSeconds = now.getTime() / 1000;
   
+    // Validate the UTC seconds
+    if (
+      utcSeconds < now / 1000 - 60 * 60 * 2 ||
+      utcSeconds > now / 1000 + 60 * 60 * 2
+    ) {
+      throw new Error('The UTC time must be within +/- 2 hours');
+    }
+  
     // Convert the UTC seconds to a string in the ISO 8601 format
-    const utcTimeString = new Date(utcSeconds).toISOString(undefined, {
-      format: 'seconds',
-      timeZone: 'Z',
-    });
+    const utcTimeString = new Date(utcSeconds * 1000).toISOString();
   
     return utcTimeString;
   }
+  
 
 // Get the current day of the week
 const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -53,7 +59,7 @@ const currentDay = daysOfWeek[new Date().getDay()];
 const outputData = {
     "slack_name": "wilz",
     "current_day": currentDay,
-    "utc_time": utcTime(),
+    "utc_time": getCurrentUtcTime(),
     "track": "backend",
     "github_file_url": "https://github.com/DONNWILZY/hngTaskOne/blob/master/index.js",
     "github_repo_url": "https://github.com/DONNWILZY/hngTaskOne",
