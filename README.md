@@ -52,7 +52,7 @@ Technologies Used:
 
 Express.js: A web application framework for building APIs and web applications.
 
-MongoDB (not shown in this example): A NoSQL database for data storage. (WILL FURTHER IMPLMENT DATA TO BE STORES AND QUERIED FROM DB)
+MongoDB  A NoSQL database for data storage. 
 
 ---
 
