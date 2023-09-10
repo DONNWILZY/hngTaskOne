@@ -66,12 +66,12 @@ const currentDay = daysOfWeek[new Date().getDay()];
 // let utc_time = timed.toISOString().split(".")[0] + "Z";
 // return utc_time;
 
-console.log(getCurrentUtcTime())
+
 
 const outputData = {
     "slack_name": "wilz",
     "current_day": currentDay,
-    "utc_time": getCurrentUtcTime,
+    "utc_time": getCurrentUtcTime(),
     "track": "backend",
     "github_file_url": "https://github.com/DONNWILZY/hngTaskOne/blob/master/index.js",
     "github_repo_url": "https://github.com/DONNWILZY/hngTaskOne",
