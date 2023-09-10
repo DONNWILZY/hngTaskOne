@@ -57,3 +57,30 @@ myDataSchema.pre('save', function (next) {
 const myData = mongoose.model('myData', myDataSchema);
 
 module.exports = myData;
+
+
+
+// const timed = new Date();
+// let utc_time = timed.toISOString().split(".")[0] + "Z";
+// return utc_time;
+
+
+function d() {
+    const now = new Date();
+  
+    // Get the current time in seconds since the Unix epoch
+    const utcSeconds = now.getTime() / 1000;
+  
+    // Validate the UTC seconds
+    if (
+      utcSeconds < now / 1000 - 60 * 60 * 2 ||
+      utcSeconds > now / 1000 + 60 * 60 * 2
+    ) {
+      throw new Error('The UTC time must be within +/- 2 hours');
+    }
+  
+    // Convert the UTC seconds to a string in the ISO 8601 format
+    const utcTimeString = new Date(utcSeconds * 1000).toISOString();
+  
+    return utcTimeString;
+  }

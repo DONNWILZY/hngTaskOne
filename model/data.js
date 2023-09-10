@@ -9,7 +9,7 @@ const myDataSchema = new mongoose.Schema({
   current_day: {
     type: Date,
     required: true,
-    default: Date.now, // Set to the current date and time by default
+    default: Date.now, 
   },
   utc_time: {
     type: Date,

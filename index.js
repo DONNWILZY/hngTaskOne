@@ -12,44 +12,21 @@ const dataRoutes = require('./routes/viewData');
 // Database connection
 mongoose.connect(process.env.databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
+
 /// db connection error
 db.on('error', (error) => {
   console.error('Connection error:', error);
 });
-//// db connecrion status.Successful alert
+//// db connecrion status.Successful message
 db.once('open', () => {
   console.log('Connection to MongoDB successful!');
 });
-//// db connecrion status.failure  alert
+//// db connecrion status.failure  message
 db.once('close', () => {
   console.log('Connection to MongoDB disconnected.');
 });
 
 
-
-
-
-
-
-function d() {
-    const now = new Date();
-  
-    // Get the current time in seconds since the Unix epoch
-    const utcSeconds = now.getTime() / 1000;
-  
-    // Validate the UTC seconds
-    if (
-      utcSeconds < now / 1000 - 60 * 60 * 2 ||
-      utcSeconds > now / 1000 + 60 * 60 * 2
-    ) {
-      throw new Error('The UTC time must be within +/- 2 hours');
-    }
-  
-    // Convert the UTC seconds to a string in the ISO 8601 format
-    const utcTimeString = new Date(utcSeconds * 1000).toISOString();
-  
-    return utcTimeString;
-  }
   
   function getCurrentUtcTime() {
     const now = new Date();
@@ -61,12 +38,6 @@ function d() {
 // Get the current day of the week
 const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const currentDay = daysOfWeek[new Date().getDay()];
-
-// const timed = new Date();
-// let utc_time = timed.toISOString().split(".")[0] + "Z";
-// return utc_time;
-
-
 
 const outputData = {
     "slack_name": "wilz",
@@ -96,7 +67,7 @@ app.get('/', (req, res) => {
 
             <h2> END POINTS</h2>
             <P> <b>GET RESPONSE DATA WITHOUT QUERY PARAMETERS:</b>  <a href="https://hng-task-one-two.vercel.app/api/data" target="_blank">https://hng-task-one-two.vercel.app/api/data</a></p> </P>
-            <P> <b>RESPONSE WITH QUERIED PARAMETERS:</b>  <a href="https://hng-task-one-two.vercel.app/api/query?&slack_name=GODSWILL_EFFIONG&track=backend" target="_blank">https://hng-task-one-two.vercel.app/api/query?&slack_name=GODSWILL_EFFIONG&track=backend</a></p> </P>
+            <P> <b>RESPONSE WITH QUERIED PARAMETERS:</b>  <a href="https://hng-task-one-two.vercel.app/api?slack_name=wilz&track=backend" target="_blank">https://hng-task-one-two.vercel.app/api?slack_name=wilz&track=backend</a></p> </P>
             <P> <b>READ ME - PROJECT DESCRIPTION:</b>  <a href="https://github.com/DONNWILZY/hngTaskOne/blob/master/README.md">https://github.com/DONNWILZY/hngTaskOne/blob/master/README.md</a></p> </P>
 
         </body>
@@ -161,17 +132,17 @@ app.get('/api/dataQuery', (req, res) => {
     });
 });
 
-// ///// ROUTE TO GET ALL DATA
-// app.get('/api/data', (req, res) => {
-//         // Response data
-//     res.json({
-//         status: 200,
-//        // message: 'Successfully fetched data',
-//         data: outputData
-//     });
-// });
+///// ROUTE TO GET ALL DATA
+app.get('/api/data', (req, res) => {
+        // Response data
+    res.json({
+        status: 200,
+       // message: 'Successfully fetched data',
+        data: outputData
+    });
+});
 
-// app.use('/api/myData', dataRoutes);
+app.use('/api/myData', dataRoutes);
 
 
 app.listen(PORT, () => {
