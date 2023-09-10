@@ -97,7 +97,7 @@ app.get('/api/query', (req, res) => {
         return res.status(400).json({ error: 'Both slack_name and track are not correct' });
     }
              // Validate the slack_name parameter if present
-    if (slack_name && slack_name !== 'GODSWILL_EFFIONG') {
+    if (slack_name && slack_name !== 'wilz') {
         return res.status(400).json({ error: 'Incorrect slack name' });
     }
         // Validate the track parameter if present
@@ -130,7 +130,7 @@ app.get('/api/dataQuery', (req, res) => {
     }
 
     // Validate the slack_name parameter
-    if (slack_name !== 'GODSWILL_EFFIONG') {
+    if (slack_name !== 'wilz') {
         return res.status(400).json({ error: 'Incorrect slack name' });
     }
             // Response data
