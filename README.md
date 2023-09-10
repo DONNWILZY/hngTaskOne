@@ -5,17 +5,17 @@ The HNG Task One API is a simple HNG10 task on web service built to provide info
 
 
 Features:
-1. Default Route: The default route ("/") provides a detailed project description and documentation of available endpoints in HTML format.
+1. Default Route: The default route `("/") `provides a detailed project description and documentation of available endpoints in HTML format.
 
-2. Endpoint for Query Parameters: The "/api/" endpoint allows users to query parameters individually. It accepts "slack_name" and "track" as query parameters and returns JSON responses based on the presence and validity of these parameters.
+2. Endpoint for Query Parameters: The `/api/` endpoint allows users to query parameters individually. It accepts "slack_name" and "track" as query parameters and returns JSON responses based on the presence and validity of these parameters.
 
-3. Endpoint for Queried Data: The "/api/dataQuery" endpoint requires both "slack_name" and "track" parameters to be present together and returns JSON responses with validation. The first one I did before I decided to added more conditions for validation
+3. Endpoint for Queried Data: The `/api/dataQuery `endpoint requires both "slack_name" and "track" parameters to be present together and returns JSON responses with validation. The first one I did before I decided to added more conditions for validation
 
-4. Endpoint to Get All Data: The "/api/data" endpoint returns JSON responses without any query parameters, providing a complete set of information.
+4. Endpoint to Get All Data: The `/api/data `endpoint returns JSON responses without any query parameters, providing a complete set of information.
+
 
    GET DATA SAVED TO DATABASE
    
-Sure, here's the rewritten API documentation with the numbering maintained:
 
 6. Endpoint: `/api/myData/save`
    Method: POST
