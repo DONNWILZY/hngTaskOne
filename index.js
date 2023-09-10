@@ -1,9 +1,35 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const app = express();
+app.use(express.json());
 
 dotenv.config();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
+
+const dataRoutes = require('./routes/viewData'); 
+
+// Database connection
+mongoose.connect(process.env.databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
+/// db connection error
+db.on('error', (error) => {
+  console.error('Connection error:', error);
+});
+//// db connecrion status.Successful alert
+db.once('open', () => {
+  console.log('Connection to MongoDB successful!');
+});
+//// db connecrion status.failure  alert
+db.once('close', () => {
+  console.log('Connection to MongoDB disconnected.');
+});
+
+
+
+
+
+
 
 function getCurrentUtcTime() {
     const now = new Date();
@@ -79,13 +105,14 @@ app.get('/api/query', (req, res) => {
         return res.status(400).json({ error: 'Invalid track' });
     }
 
-    // Generate an HTML response or JSON response based on the presence of parameters
+    // response
     if (slack_name || track) {
-        res.json({
-            status: 200,
-           // message: 'Successfully fetched data',
-            data: outputData
-        });
+        res.status(200).json(outputData);
+        // res.json({
+        //     status: 200,
+        //    // message: 'Successfully fetched data',
+        //     data: outputData
+        // });
     } else {
         res.send('No data matching the criteria found');
     }
@@ -124,6 +151,7 @@ app.get('/api/data', (req, res) => {
     });
 });
 
+app.use('/api/myData', dataRoutes);
 
 
 app.listen(PORT, () => {
