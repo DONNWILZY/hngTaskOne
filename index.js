@@ -49,7 +49,7 @@ const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Fri
 const currentDay = daysOfWeek[new Date().getDay()];
 
 const outputData = {
-    "slack_name": "GODSWILL_EFFIONG",
+    "slack_name": "wilz",
     "current_day": currentDay,
     "utc_time": getCurrentUtcTime(),
     "track": "backend",
