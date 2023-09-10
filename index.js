@@ -31,7 +31,7 @@ db.once('close', () => {
 
 
 
-function getCurrentUtcTime() {
+function d() {
     const now = new Date();
   
     // Get the current time in seconds since the Unix epoch
@@ -51,15 +51,27 @@ function getCurrentUtcTime() {
     return utcTimeString;
   }
   
+  function getCurrentUtcTime() {
+    const now = new Date();
+    let utc_time = now.toISOString().split(".")[0] + "Z";
+    return utc_time;
+  }
+  
 
 // Get the current day of the week
 const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const currentDay = daysOfWeek[new Date().getDay()];
 
+// const timed = new Date();
+// let utc_time = timed.toISOString().split(".")[0] + "Z";
+// return utc_time;
+
+console.log(getCurrentUtcTime())
+
 const outputData = {
     "slack_name": "wilz",
     "current_day": currentDay,
-    "utc_time": getCurrentUtcTime(),
+    "utc_time": getCurrentUtcTime,
     "track": "backend",
     "github_file_url": "https://github.com/DONNWILZY/hngTaskOne/blob/master/index.js",
     "github_repo_url": "https://github.com/DONNWILZY/hngTaskOne",
@@ -149,19 +161,23 @@ app.get('/api/dataQuery', (req, res) => {
     });
 });
 
-///// ROUTE TO GET ALL DATA
-app.get('/api/data', (req, res) => {
-        // Response data
-    res.json({
-        status: 200,
-       // message: 'Successfully fetched data',
-        data: outputData
-    });
-});
+// ///// ROUTE TO GET ALL DATA
+// app.get('/api/data', (req, res) => {
+//         // Response data
+//     res.json({
+//         status: 200,
+//        // message: 'Successfully fetched data',
+//         data: outputData
+//     });
+// });
 
-app.use('/api/myData', dataRoutes);
+// app.use('/api/myData', dataRoutes);
 
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
-});
+  });
+  
+  app.on('disconnect', () => {
+    console.log('disconnected');
+  });
