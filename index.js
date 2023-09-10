@@ -33,19 +33,15 @@ db.once('close', () => {
 
 function getCurrentUtcTime() {
     const now = new Date();
-    const utcOffsetInMinutes = now.getTimezoneOffset() - (60 * 1); // 1 hour behind WAT
-  
-    // Validate the UTC offset
-    if (utcOffsetInMinutes < -120 || utcOffsetInMinutes > 120) {
-      throw new Error('The UTC offset must be within +/- 2 hours');
-    }
   
     // Use toISOString to format the UTC time with the "Z" suffix
-    const utcTime = now.toISOString();
+    const utcTime = now.toISOString(undefined, {
+      format: 'seconds',
+      timeZone: 'Z',
+    });
   
     return utcTime;
   }
-  
 
 // Get the current day of the week
 const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
