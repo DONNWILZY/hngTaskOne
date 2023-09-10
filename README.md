@@ -14,7 +14,7 @@ Features:
 4. Endpoint to Get All Data: The `/api/data `endpoint returns JSON responses without any query parameters, providing a complete set of information.
 
 
-   GET DATA SAVED TO DATABASE
+  ```` GET DATA SAVED TO DATABASE````
    
 
 6. Endpoint: `/api/myData/save`
