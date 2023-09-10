@@ -87,7 +87,7 @@ app.get('/', (req, res) => {
 });
 
           // query parameters
-app.get('/api/', (req, res) => {
+app.get('/api', (req, res) => {
     const slack_name = req.query.slack_name;
     const track = req.query.track;
 
